@@ -313,4 +313,23 @@ public class RepositoryWithCompositeKeyTests {
 		assertThat(employeeRepositoryWithIdClass.existsByName(emp1.getName())).isTrue();
 		assertThat(employeeRepositoryWithIdClass.existsByName("Walter")).isFalse();
 	}
+
+	@Test
+	void shouldSupportDeleteAllByIdInBatchWithIdClass() throws Exception {
+
+		IdClassExampleDepartment dep = new IdClassExampleDepartment();
+		dep.setName("TestDepartment");
+		dep.setDepartmentId(-1);
+
+		IdClassExampleEmployee emp = new IdClassExampleEmployee();
+		emp.setDepartment(dep);
+		emp = employeeRepositoryWithIdClass.save(emp);
+
+		IdClassExampleEmployeePK key = new IdClassExampleEmployeePK(emp.getEmpId(), dep.getDepartmentId());
+		assertThat(employeeRepositoryWithIdClass.findById(key)).isNotEmpty();
+
+		employeeRepositoryWithIdClass.deleteAllByIdInBatch(Arrays.asList(key));
+
+		assertThat(employeeRepositoryWithIdClass.findById(key)).isEmpty();
+	}
 }
