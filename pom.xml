@@ -22,7 +22,7 @@
 		<dist.key>DATAJPA</dist.key>
 
 		<eclipselink>2.7.9</eclipselink>
-		<hibernate>5.6.0.Final</hibernate>
+		<hibernate>5.6.5.Final</hibernate>
 		<mysql-connector-java>8.0.23</mysql-connector-java>
 		<postgresql>42.2.19</postgresql>
 		<springdata.commons>2.7.0-SNAPSHOT</springdata.commons>
@@ -77,7 +77,7 @@
 		<profile>
 			<id>hibernate-next</id>
 			<properties>
-				<hibernate>6.0.0-SNAPSHOT</hibernate>
+				<hibernate>5.6.5.Final</hibernate>
 			</properties>
 			<repositories>
 				<repository>
